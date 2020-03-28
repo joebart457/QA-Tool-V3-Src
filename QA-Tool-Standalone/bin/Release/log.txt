@@ -1,0 +1,56 @@
+3/28/2020 2:53:13 AM: Starting session.....
+3/28/2020 2:53:14 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 2:53:14 AM: Verified line.
+3/28/2020 2:53:14 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:19:16 AM: Starting session.....
+3/28/2020 3:19:17 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:19:17 AM: Verified line.
+3/28/2020 3:19:17 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:21:59 AM: Starting session.....
+3/28/2020 3:21:59 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:21:59 AM: Verified line.
+3/28/2020 3:21:59 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:28:09 AM: Starting session.....
+3/28/2020 3:28:09 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:28:09 AM: Verified line.
+3/28/2020 3:28:09 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:30:51 AM: Starting session.....
+3/28/2020 3:30:52 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:30:52 AM: Verified line.
+3/28/2020 3:30:52 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:31:31 AM: Starting session.....
+3/28/2020 3:31:31 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:31:31 AM: Verified line.
+3/28/2020 3:31:31 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 3:33:08 AM: Starting session.....
+3/28/2020 3:33:08 AM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 3:33:08 AM: Verified line.
+3/28/2020 3:33:08 AM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 12:12:46 PM: Starting session.....
+3/28/2020 12:12:46 PM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:12:46 PM: Verified line.
+3/28/2020 12:12:46 PM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 12:13:41 PM: Adding columndata: Test-2|A:B,G:F
+3/28/2020 12:13:41 PM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:13:41 PM: Verified line.
+3/28/2020 12:13:41 PM: Read 'Test-2|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:13:41 PM: Verified line.
+3/28/2020 12:13:41 PM: Finished reading 2 lines from file: column_data.txt
+3/28/2020 12:13:45 PM: Adding columndata: Test|A:B,G:F
+3/28/2020 12:13:45 PM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:13:45 PM: Verified line.
+3/28/2020 12:13:45 PM: Finished reading 1 lines from file: column_data.txt
+3/28/2020 12:14:50 PM: Adding columndata: Test-2|A:B,G:F
+3/28/2020 12:14:50 PM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:14:50 PM: Verified line.
+3/28/2020 12:14:50 PM: Read 'Test-2|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:14:50 PM: Verified line.
+3/28/2020 12:14:50 PM: Finished reading 2 lines from file: column_data.txt
+3/28/2020 12:14:54 PM: Adding columndata: Test-3|A:B,G:F
+3/28/2020 12:14:54 PM: Read 'Test|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:14:54 PM: Verified line.
+3/28/2020 12:14:54 PM: Read 'Test-2|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:14:54 PM: Verified line.
+3/28/2020 12:14:54 PM: Read 'Test-3|A:B,G:F' from file: 'column_data.txt'
+3/28/2020 12:14:54 PM: Verified line.
+3/28/2020 12:14:54 PM: Finished reading 3 lines from file: column_data.txt
