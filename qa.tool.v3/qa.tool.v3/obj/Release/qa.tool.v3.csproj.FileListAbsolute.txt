@@ -7,3 +7,16 @@ C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\qa.tool.v3.csproj.Genera
 C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\qa.tool.v3.csproj.CoreCompileInputs.cache
 C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\QA_Tool_Standalone.exe
 C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\QA_Tool_Standalone.pdb
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\Microsoft.CSharp.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Data.DataSetExtensions.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Data.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Deployment.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.DirectoryServices.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Drawing.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Net.Http.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Windows.Forms.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Xml.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Release\System.Xml.Linq.dll
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\qa.tool.v3.csprojAssemblyReference.cache
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Release\qa.tool.v3.csproj.CopyComplete
