@@ -1,0 +1,10 @@
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Debug\QA_Tool_Standalone.exe.config
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Debug\QA_Tool_Standalone.exe
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\bin\Debug\QA_Tool_Standalone.pdb
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\qa.tool.v3.csprojAssemblyReference.cache
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\QA_Tool_Standalone.Form1.resources
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\QA_Tool_Standalone.Properties.Resources.resources
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\qa.tool.v3.csproj.GenerateResource.cache
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\qa.tool.v3.csproj.CoreCompileInputs.cache
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\QA_Tool_Standalone.exe
+C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\obj\Debug\QA_Tool_Standalone.pdb
