@@ -11,6 +11,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using QA_Tool_Standalone.Repository;
+using QA_Tool_Standalone.Models;
+using QA_Tool_Standalone.Service;
 
 namespace QA_Tool_Standalone
 {
@@ -19,22 +22,34 @@ namespace QA_Tool_Standalone
 
         private Excel.Worksheet _activeSheet;
         private Excel.Workbook _activeWB;
-
-
+        private ConnectionManager _connectionManager;
 
         public Form1()
         {
             LoggerService.Log("Starting session.....");
             InitializeComponent();
+            _connectionManager = new ConnectionManager();
+
+            SetupLogger();
             InitTreeView();
             InitColumnList();
+            InitDateRangeList();
 
             lbl_ChangesSaved.Visible = false;
             lbl_UnsavedChanges.Visible = false;
             lbl_NoChanges.Visible = true;
 
+            lbl_DateRangeChangesSaved.Visible = false;
+            lbl_DateRangeUnsavedChanges.Visible = false;
+            lbl_DateRangeNoChanges.Visible = true;
         }
 
+        private void SetupLogger()
+        {
+            LoggerService.DoLogDebug = ConfigRepository.GetBooleanOption(_connectionManager, "Logger.DoLogDebug", true);
+            LoggerService.DoLogWarning = ConfigRepository.GetBooleanOption(_connectionManager, "Logger.DoLogWarning", true);
+            LoggerService.DoLogError = ConfigRepository.GetBooleanOption(_connectionManager, "Logger.DoLogError", true);
+        }
         private void SetActive(Utilities.Double<string> node)
         {
             _activeWB = null;
@@ -87,6 +102,7 @@ namespace QA_Tool_Standalone
 
         private void InitTreeView()
         {
+            LoggerService.Log("Initializing treeview.");
             try
             {
                 treeView_WBWS.Nodes.Clear();
@@ -101,9 +117,11 @@ namespace QA_Tool_Standalone
                         counter++;
                     }
                 }
+                LoggerService.Log("Finished initializing treeview");
             }
             catch (Exception ex)
             {
+                LoggerService.LogError(ex.ToString());
                 treeView_WBWS.Nodes.Clear();
             }
 
@@ -111,14 +129,31 @@ namespace QA_Tool_Standalone
 
         private void InitColumnList()
         {
+            LoggerService.Log("Initializing column list");
             chkLB_TargetColumns.Items.Clear();
             LB_EditColumns.Items.Clear();
-            List<ColumnData> data = ColumnDataLoaderService.GetDataFromFile("column_data.txt");
+            List<ColumnData> data = ColumnDataRepository.GetColumnData(_connectionManager, "%", "%");
+            
             foreach (ColumnData columnRange in data)
             {
                 chkLB_TargetColumns.Items.Add(columnRange);
                 LB_EditColumns.Items.Add(columnRange);
             }
+            LoggerService.Log("Finished loading column data");
+
+        }
+
+        private void InitDateRangeList()
+        {
+            LoggerService.Log("Initializing date range list");
+            lb_DateRange.Items.Clear();
+            List<DateRange> data = DateRangeRepository.GetDateRanges(_connectionManager, "%");
+
+            foreach (DateRange dateRange in data)
+            {
+                lb_DateRange.Items.Add(dateRange);
+            }
+            LoggerService.Log("Finished loading date ranges");
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -179,10 +214,15 @@ namespace QA_Tool_Standalone
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            if (ColumnDataLoaderService.VerifyColumnFormat(textBox_ColumnCodes.Text))
+            // Save as new
+            if (textBox_Description.Text.Length <= 0)
+            {
+                MessageBox.Show("Description must not be blank", "Invalid Input");
+            }
+            if (ValidatorService.ValidateColumnFormat(textBox_ColumnCodes.Text))
             {
                 ColumnData cd = new ColumnData(textBox_Description.Text, textBox_ColumnCodes.Text);
-                ColumnDataLoaderService.AddColumn("column_data.txt", cd);
+                ColumnDataRepository.AddColumnData(_connectionManager, cd);
                 InitColumnList();
 
                 lbl_ChangesSaved.Visible = false;
@@ -201,19 +241,20 @@ namespace QA_Tool_Standalone
         {
             try
             {
-
-                if (ColumnDataLoaderService.VerifyColumnFormat(textBox_ColumnCodes.Text))
+                if (LB_EditColumns.SelectedItem == null)
+                {
+                    MessageBox.Show("Must select an item to save changes.", "Please select item");
+                    return;
+                }
+                if (ValidatorService.ValidateColumnFormat(textBox_ColumnCodes.Text))
                 {
                     ((ColumnData)LB_EditColumns.SelectedItem).Name = textBox_Description.Text;
                     ((ColumnData)LB_EditColumns.SelectedItem).Data = textBox_ColumnCodes.Text;
 
-                    ColumnDataLoaderService.WriteColumnDataToFile("column_data.txt", GetColumnDataListFromEditColumnsLB(), true);
-                    if (LB_EditColumns.SelectedItem != null)
-                    {
-                        lbl_ChangesSaved.Visible = true;
-                        lbl_UnsavedChanges.Visible = false;
-                        lbl_NoChanges.Visible = false;
-                    }
+                    ColumnDataRepository.UpdateColumnData(_connectionManager, (ColumnData)LB_EditColumns.SelectedItem);
+                    lbl_ChangesSaved.Visible = true;
+                    lbl_UnsavedChanges.Visible = false;
+                    lbl_NoChanges.Visible = false;
 
 
                 }
@@ -239,11 +280,11 @@ namespace QA_Tool_Standalone
                     textBox_Description.Text = ((ColumnData)LB_EditColumns.Items[LB_EditColumns.SelectedIndex]).Name;
                     textBox_ColumnCodes.Text = ((ColumnData)LB_EditColumns.Items[LB_EditColumns.SelectedIndex]).Data;
 
+                    btn_SaveChanges.Enabled = true;
                     lbl_ChangesSaved.Visible = false;
                     lbl_UnsavedChanges.Visible = false;
                     lbl_NoChanges.Visible = true;
                 }
-
             }
             catch (Exception ex)
             {
@@ -359,27 +400,14 @@ namespace QA_Tool_Standalone
         {
             if (LB_EditColumns.SelectedItem != null)
             {
-
-                LB_EditColumns.Items.Remove(LB_EditColumns.SelectedItem);
-
-                ColumnDataLoaderService.WriteColumnDataToFile("column_data.txt", GetColumnDataListFromEditColumnsLB(), true);
+                ColumnData cdToDelete = (ColumnData)LB_EditColumns.SelectedItem;
+                ColumnDataRepository.DeleteColumnData(_connectionManager, cdToDelete);
                 InitColumnList();
-
             }
             else
             {
                 MessageBox.Show("Please select item.", "Select item");
             }
-        }
-
-        private List<ColumnData> GetColumnDataListFromEditColumnsLB()
-        {
-            List<ColumnData> lsCd = new List<ColumnData>();
-            foreach (ColumnData cd in LB_EditColumns.Items)
-            {
-                lsCd.Add(cd);
-            }
-            return lsCd;
         }
 
         private void btn_ChooseDestFolder_Click(object sender, EventArgs e)
@@ -408,14 +436,218 @@ namespace QA_Tool_Standalone
             LoggerService.ClearLogs();
         }
 
-        private void btn_ClearColumns_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void chkBox_ConvertToXLS_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void grpBox_Config_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBox_dateColumn_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtPicker_StartDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                lbl_DateRangeUnsavedChanges.Visible = true;
+                lbl_DateRangeNoChanges.Visible = false;
+                lbl_DateRangeChangesSaved.Visible = false;
+            }
+        }
+
+
+        private void btn_SaveDateRangeAsNew_Click(object sender, EventArgs e)
+        {
+            // Save as new
+
+            if (txtBox_DateRangeLabel.Text.Length <= 0)
+            {
+                MessageBox.Show("Label must not be blank", "Invalid Input");
+                return;
+            }
+
+            DateRange dateRange = new DateRange();
+
+            dateRange.Label = txtBox_DateRangeLabel.Text;
+            dateRange.StartTime = dtPicker_StartDate.Value.Add(dtPicker_StartTime.Value.TimeOfDay);
+            dateRange.EndTime = dtPicker_EndDate.Value.Add(dtPicker_EndTime.Value.TimeOfDay);
+
+
+            DateRangeRepository.AddDateRange(_connectionManager, dateRange);
+
+            InitDateRangeList();
+
+            lbl_DateRangeChangesSaved.Visible = false;
+            lbl_DateRangeUnsavedChanges.Visible = false;
+            lbl_DateRangeNoChanges.Visible = true;
+
+            
+        }
+
+        private void btn_SaveDateRange_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lb_DateRange.SelectedItem == null)
+                {
+                    MessageBox.Show("Must select an item to save changes.", "Please select item");
+                    return;
+                }
+
+                ((DateRange)lb_DateRange.SelectedItem).Label = txtBox_DateRangeLabel.Text;
+                ((DateRange)lb_DateRange.SelectedItem).StartTime = dtPicker_StartDate.Value.Add(dtPicker_StartTime.Value.TimeOfDay);
+                ((DateRange)lb_DateRange.SelectedItem).EndTime = dtPicker_EndDate.Value.Add(dtPicker_EndTime.Value.TimeOfDay);
+
+                DateRangeRepository.UpdateDateRange(_connectionManager, (DateRange)lb_DateRange.SelectedItem);
+
+                lbl_DateRangeChangesSaved.Visible = true;
+                lbl_DateRangeUnsavedChanges.Visible = false;
+                lbl_DateRangeNoChanges.Visible = false;
+
+                var selectedIndex = lb_DateRange.SelectedIndex;
+                InitDateRangeList();
+
+                lb_DateRange.SetSelected(selectedIndex, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A non-terminal error has occurred. No worries.", "Every little thing will be alright.");
+                LoggerService.Log("Non-terminal exception occurred: " + ex.ToString());
+            }
+        }
+
+        private void btn_DeleteDateRange_Click(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                DateRange drToDelete = (DateRange)lb_DateRange.SelectedItem;
+                DateRangeRepository.DeleteDateRange(_connectionManager, drToDelete);
+                InitDateRangeList();
+            }
+            else
+            {
+                MessageBox.Show("Please select item.", "Select item");
+            }
+        }
+
+        private void txtBox_DateRangeLabel_TextChanged(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                lbl_DateRangeUnsavedChanges.Visible = true;
+                lbl_DateRangeNoChanges.Visible = false;
+                lbl_DateRangeChangesSaved.Visible = false;
+            }
+        }
+
+        private void lb_DateRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lb_DateRange.SelectedIndex >= 0)
+                {
+                    txtBox_DateRangeLabel.Text = ((DateRange)lb_DateRange.Items[lb_DateRange.SelectedIndex]).Label;
+                    dtPicker_StartDate.Value = ((DateRange)lb_DateRange.Items[lb_DateRange.SelectedIndex]).StartTime.Date;
+                    dtPicker_StartTime.Value = ((DateRange)lb_DateRange.Items[lb_DateRange.SelectedIndex]).StartTime;
+                    dtPicker_EndDate.Value = ((DateRange)lb_DateRange.Items[lb_DateRange.SelectedIndex]).EndTime.Date;
+                    dtPicker_EndTime.Value = ((DateRange)lb_DateRange.Items[lb_DateRange.SelectedIndex]).EndTime;
+
+                    btn_SaveDateRange.Enabled = true;
+                    lbl_DateRangeChangesSaved.Visible = false;
+                    lbl_DateRangeUnsavedChanges.Visible = false;
+                    lbl_DateRangeNoChanges.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                LoggerService.Log("Non-terminal error: " + ex.ToString());
+            }
+        }
+
+        private void dtPicker_StartTime_ValueChanged(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                lbl_DateRangeUnsavedChanges.Visible = true;
+                lbl_DateRangeNoChanges.Visible = false;
+                lbl_DateRangeChangesSaved.Visible = false;
+            }
+        }
+
+        private void dtPicker_EndDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                lbl_DateRangeUnsavedChanges.Visible = true;
+                lbl_DateRangeNoChanges.Visible = false;
+                lbl_DateRangeChangesSaved.Visible = false;
+            }
+        }
+
+        private void dtPicker_EndTime_ValueChanged(object sender, EventArgs e)
+        {
+            if (lb_DateRange.SelectedItem != null)
+            {
+                lbl_DateRangeUnsavedChanges.Visible = true;
+                lbl_DateRangeNoChanges.Visible = false;
+                lbl_DateRangeChangesSaved.Visible = false;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_RunDateLabelMacros_Click(object sender, EventArgs e)
+        {
+            string dateColumn = txtBox_dateColumn.Text;
+            string targetColumn = txtBox_targetColumn.Text;
+            if (!(ValidatorService.ValidateSingleColumn(dateColumn) && ValidatorService.ValidateSingleColumn(targetColumn)))
+            {
+                MessageBox.Show("Expect date column and target column to be a single column value.");
+                return;
+            }
+
+            if (_activeSheet != null)
+            {
+                var xlRange = _activeSheet.UsedRange;
+
+                for (int i = 1; i <= xlRange.Rows.Count; i++)
+                {
+                    Excel.Range rawDateColumn = xlRange.Rows[i].Columns[dateColumn];
+
+                    if (rawDateColumn != null)
+                    {
+                        if (rawDateColumn.Value is System.DateTime)
+                        {
+                            string label = DateRangeRepository.GetDateLabelsForDateTime(_connectionManager, rawDateColumn.Value, txtBox_Fallback.Text);
+                            xlRange.Rows[i].Columns[targetColumn] = label;
+                        }
+                        else
+                        {
+                            LoggerService.Log($"Date column in row {i.ToString()} was not of type System.DateTime");
+                        }
+                    }
+                    else
+                    {
+                        LoggerService.Log($"Date column in row {i.ToString()} was null.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a target worksheet");
+            }
+        }
+
     }
 }

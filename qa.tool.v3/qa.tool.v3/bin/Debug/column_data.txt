@@ -1,1 +1,2 @@
-Hide Column B|B:B
+Hide Column A&B|A:B
+Hide Column B & C|B:C
