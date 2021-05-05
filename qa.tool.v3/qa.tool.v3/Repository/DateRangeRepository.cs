@@ -14,6 +14,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 List<DateRange> dateRanges = new List<DateRange>();
                 var conn = cm.GetSQLConnection();
                 var selectDateRangesCmd = conn.CreateCommand();
@@ -46,6 +47,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var insertDateRangeCmd = conn.CreateCommand();
 
@@ -67,6 +69,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var updateDateRangeCmd = conn.CreateCommand();
 
@@ -89,6 +92,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var deleteDateRangeCmd = conn.CreateCommand();
 
@@ -108,6 +112,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 string result = "";
                 var conn = cm.GetSQLConnection();
                 var selectLabelsCmd = conn.CreateCommand();
@@ -119,6 +124,37 @@ namespace QA_Tool_Standalone.Repository
                 while (reader.Read())
                 {
                     result += result.Length > 0? ","+ reader.GetString(0) : reader.GetString(0);
+                }
+
+                if (result.Length == 0)
+                {
+                    return fallback;
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LoggerService.LogError(ex.ToString());
+                throw ex;
+            }
+        }
+
+        public async static Task<string> GetDateLabelsForDateTimeAsync(ConnectionManager cm, DateTime dt, string fallback = "")
+        {
+            try
+            {
+                Utilities.CheckNull(cm);
+                string result = "";
+                var conn = cm.GetSQLConnection();
+                var selectLabelsCmd = conn.CreateCommand();
+
+                selectLabelsCmd.CommandText = @"SELECT DISTINCT label FROM date_range WHERE @DateTime >= start_time AND @DateTime <= end_time";
+                selectLabelsCmd.Parameters.Add(new SQLiteParameter("@DateTime", dt.Ticks));
+
+                var reader = selectLabelsCmd.ExecuteReader();
+                while (await reader.ReadAsync())
+                {
+                    result += result.Length > 0 ? "," + reader.GetString(0) : reader.GetString(0);
                 }
 
                 if (result.Length == 0)

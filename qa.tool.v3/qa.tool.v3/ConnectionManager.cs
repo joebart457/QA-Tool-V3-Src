@@ -17,7 +17,7 @@ namespace QA_Tool_Standalone
 
         private List<string> RELEASES = new List<string>
         {
-            "1.0.0"
+            "1.0.0",
         };
 
         public ConnectionManager() { CreateConnection(); }
@@ -54,7 +54,7 @@ namespace QA_Tool_Standalone
                             throw new Exception("Invalid db version. Please update manually. Or recreate db.");
                         } else
                         {
-                            for (int i = index; i < RELEASES.Count(); i++)
+                            for (int i = index + 1; i < RELEASES.Count(); i++)
                             {
                                 RunUpgrade(RELEASES.ElementAt(i));
                             }
@@ -130,12 +130,12 @@ namespace QA_Tool_Standalone
                 var insertAppParamsCmd = _sqlConn.CreateCommand();
                 insertAppParamsCmd.CommandText = @"INSERT INTO config (param, value) 
                     VALUES  ('Db.Version', '1.0.0'),
-                            ('Logger.DoLogDebug', 'true'),
+                            ('Logger.DoLogDebug', 'false'),
                             ('Logger.DoLogWarning', 'true'),
                             ('Logger.DoLogError', 'true'),
-                            ('Excel.HideColumns.Output.ConvertToXLS', 'true'),
-                            ('Excel.HideColumns.Output.DeleteOldCSV', 'true'),
-                            ('Excel.HideColumns.Output.SaveAsNew', 'true'),
+                            ('Excel.HideColumns.Output.ConvertToXLS', 'false'),
+                            ('Excel.HideColumns.Output.DeleteOldCSV', 'false'),
+                            ('Excel.HideColumns.Output.SaveAsNew', 'false'),
                             ('Excel.HideColumns.Output.Prefix', 'hdn-'),
                             ('Excel.HideColumns.Output.Folder', '')";
                 insertAppParamsCmd.ExecuteNonQuery();
@@ -149,7 +149,7 @@ namespace QA_Tool_Standalone
 
         private void RunUpgrade(string upgradeVersion)
         {
-            LoggerService.Log("Running upgrade :" + upgradeVersion);
+            LoggerService.Log("Running upgrade: " + upgradeVersion);
             if (upgradeVersion == "1.0.0")
             {
                 // Initial Release

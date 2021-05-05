@@ -82,6 +82,7 @@
             this.lb_DateRangesRunView = new System.Windows.Forms.ListBox();
             this.pb_RunDateTimeMacros = new System.Windows.Forms.ProgressBar();
             this.gb_RunDateTimeMacrosStatus = new System.Windows.Forms.GroupBox();
+            this.lbl_RunDateTimeMacrosProgress = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -647,6 +648,7 @@
             // 
             // gb_RunDateTimeMacrosStatus
             // 
+            this.gb_RunDateTimeMacrosStatus.Controls.Add(this.lbl_RunDateTimeMacrosProgress);
             this.gb_RunDateTimeMacrosStatus.Controls.Add(this.pb_RunDateTimeMacros);
             this.gb_RunDateTimeMacrosStatus.Location = new System.Drawing.Point(24, 303);
             this.gb_RunDateTimeMacrosStatus.Name = "gb_RunDateTimeMacrosStatus";
@@ -654,6 +656,18 @@
             this.gb_RunDateTimeMacrosStatus.TabIndex = 24;
             this.gb_RunDateTimeMacrosStatus.TabStop = false;
             this.gb_RunDateTimeMacrosStatus.Text = "Task Status";
+            // 
+            // lbl_RunDateTimeMacrosProgress
+            // 
+            this.lbl_RunDateTimeMacrosProgress.AutoSize = true;
+            this.lbl_RunDateTimeMacrosProgress.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_RunDateTimeMacrosProgress.Location = new System.Drawing.Point(424, 16);
+            this.lbl_RunDateTimeMacrosProgress.Name = "lbl_RunDateTimeMacrosProgress";
+            this.lbl_RunDateTimeMacrosProgress.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbl_RunDateTimeMacrosProgress.Size = new System.Drawing.Size(61, 13);
+            this.lbl_RunDateTimeMacrosProgress.TabIndex = 24;
+            this.lbl_RunDateTimeMacrosProgress.Text = "Not Started";
+            this.lbl_RunDateTimeMacrosProgress.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -682,6 +696,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgView_AppSettings)).EndInit();
             this.grpBox_Config.ResumeLayout(false);
             this.gb_RunDateTimeMacrosStatus.ResumeLayout(false);
+            this.gb_RunDateTimeMacrosStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,6 +759,7 @@
         private System.Windows.Forms.ListBox lb_DateRangesRunView;
         private System.Windows.Forms.ProgressBar pb_RunDateTimeMacros;
         private System.Windows.Forms.GroupBox gb_RunDateTimeMacrosStatus;
+        private System.Windows.Forms.Label lbl_RunDateTimeMacrosProgress;
     }
 }
 

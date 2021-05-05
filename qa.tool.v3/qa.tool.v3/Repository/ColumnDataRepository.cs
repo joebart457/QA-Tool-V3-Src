@@ -14,6 +14,8 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
+
                 List<ColumnData> columnData = new List<ColumnData>();
                 var conn = cm.GetSQLConnection();
                 var selectColumnDataCmd = conn.CreateCommand();
@@ -41,6 +43,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var insertColumnDataCmd = conn.CreateCommand();
 
@@ -60,6 +63,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var updateColumnDataCmd = conn.CreateCommand();
 
@@ -81,6 +85,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var deleteColumnDataCmd = conn.CreateCommand();
 

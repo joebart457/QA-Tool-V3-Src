@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace QA_Tool_Standalone.Tasks
 {
-    class ExcelRunDateLabelMacrosTask: TaskInterface
+    class ExcelRunDateLabelMacrosTask
     {
         private string _dateColumn { get; set; }
         private string _targetColumn { get; set; }
@@ -28,7 +28,7 @@ namespace QA_Tool_Standalone.Tasks
             _fallback = fallback;
         }
 
-        public void Execute(CallBack callback)
+        public void Execute(IProgress<int> progress, CallBack callback)
         {
 
             if (!(ValidatorService.ValidateSingleColumn(_dateColumn) && ValidatorService.ValidateSingleColumn(_targetColumn)))
@@ -39,6 +39,7 @@ namespace QA_Tool_Standalone.Tasks
             if (_activeSheet != null)
             {
                 var xlRange = _activeSheet.UsedRange;
+                int totalRows = _activeSheet.UsedRange.Rows.Count;
 
                 for (int i = 1; i <= xlRange.Rows.Count; i++)
                 {
@@ -60,6 +61,7 @@ namespace QA_Tool_Standalone.Tasks
                     {
                         LoggerService.LogWarning($"Date column in row {i.ToString()} was null.");
                     }
+                    progress.Report(i);
                     callback();
                 }
             }

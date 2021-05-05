@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var selectParamCmd = conn.CreateCommand();
 
@@ -39,6 +41,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var selectParamCmd = conn.CreateCommand();
 
@@ -66,6 +69,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var updateParamCmd = conn.CreateCommand();
 
@@ -86,6 +90,7 @@ namespace QA_Tool_Standalone.Repository
         {
             try
             {
+                Utilities.CheckNull(cm);
                 var conn = cm.GetSQLConnection();
                 var deleteParamCmd = conn.CreateCommand();
 
@@ -101,7 +106,44 @@ namespace QA_Tool_Standalone.Repository
             }
         }
 
+        public static DataTable GetConfigurationAsDatatable(ConnectionManager cm)
+        {
+            try
+            {
+                Utilities.CheckNull(cm);
 
+                DataTable configDataTable = new DataTable();
+                string selectConfigSql = @"select id, param, value from config";
+
+                using (SQLiteCommand command = new SQLiteCommand(selectConfigSql, cm.GetSQLConnection()))
+                {
+                    configDataTable = new DataTable();
+                    configDataTable.Load(command.ExecuteReader());
+                }
+                return configDataTable;
+            } catch (Exception ex)
+            {
+                LoggerService.LogError(ex.ToString());
+                throw ex;
+            }
+        }
+
+        public static void UpdateConfigurationByDatatable(ConnectionManager cm, DataTable configTable) 
+        {
+            try
+            {
+                Utilities.CheckNull(cm);
+                using (SQLiteDataAdapter sQLiteDataAdapter = new SQLiteDataAdapter(@"select id, param, value from config", cm.GetSQLConnection()))
+                {
+                    SQLiteCommandBuilder commandBuilder = new SQLiteCommandBuilder(sQLiteDataAdapter);
+                    sQLiteDataAdapter.Update(configTable);
+                }
+            } catch (Exception ex)
+            {
+                LoggerService.LogError(ex.ToString());
+                throw ex;
+            }
+        }
 
     }
 }

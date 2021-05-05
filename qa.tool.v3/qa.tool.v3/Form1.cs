@@ -28,42 +28,61 @@ namespace QA_Tool_Standalone
 
         private DataTable _configDataTable;
 
+        private List<string> _initializationErrors = new List<string>();
         public Form1()
         {
             LoggerService.Log("Starting session.....");
             InitializeComponent();
             _connectionManager = new ConnectionManager();
 
+            SetupForm();   
             SetupLogger();
             SetupAppSettingsTable();
-            InitTreeView();
-            InitColumnList();
-            InitDateRangeList();
-
-
-
-            lbl_ChangesSaved.Visible = false;
-            lbl_UnsavedChanges.Visible = false;
-            lbl_NoChanges.Visible = true;
-
-            lbl_DateRangeChangesSaved.Visible = false;
-            lbl_DateRangeUnsavedChanges.Visible = false;
-            lbl_DateRangeNoChanges.Visible = true;
+            LoadDataFromDB();
+            ShowErrors();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
      
         }
+        private void SetupForm()
+        {
+            SetFormtTitleText();
+            SetLabelVisibility();
+        }
+
+        private void LoadDataFromDB()
+        {
+            InitTreeView();
+            InitColumnList();
+            InitDateRangeList();
+        }
+
+        private void ShowErrors()
+        {
+            if (_initializationErrors.Count() > 0)
+            {
+                MessageBox.Show(String.Join("\n", _initializationErrors), "Error Occured While Loading App");
+                _initializationErrors.Clear();
+            }
+        }
+
+        private void SetFormtTitleText()
+        {
+            string dbVersion = ConfigRepository.GetStringOption(_connectionManager, "Db.Version", "<n/a>");
+            this.Text = $"QA Tool v.{dbVersion}";
+        }
 
         private void SetupAppSettingsTable()
         {
-            string selectConfigSql = @"select id, param, value from config";
-            using (SQLiteCommand command = new SQLiteCommand(selectConfigSql, _connectionManager.GetSQLConnection()))
+            try
             {
-                _configDataTable = new DataTable();
-                _configDataTable.Load(command.ExecuteReader());
+                _configDataTable = ConfigRepository.GetConfigurationAsDatatable(_connectionManager);
                 dgView_AppSettings.DataSource = _configDataTable;
+            } catch (Exception)
+            {
+                _initializationErrors.Add("Error retrieving configuration. Continuing with default settings.");
             }
         }
 
@@ -98,29 +117,14 @@ namespace QA_Tool_Standalone
             }
         }
 
-
-
-
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
+        private void SetLabelVisibility()
         {
-
-
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-
+            lbl_ChangesSaved.Visible = false;
+            lbl_UnsavedChanges.Visible = false;
+            lbl_NoChanges.Visible = true;
+            lbl_DateRangeChangesSaved.Visible = false;
+            lbl_DateRangeUnsavedChanges.Visible = false;
+            lbl_DateRangeNoChanges.Visible = true;
         }
 
         private void InitTreeView()
@@ -145,6 +149,7 @@ namespace QA_Tool_Standalone
             catch (Exception ex)
             {
                 LoggerService.LogError(ex.ToString());
+                _initializationErrors.Add(ex.ToString());
                 treeView_WBWS.Nodes.Clear();
             }
 
@@ -155,15 +160,23 @@ namespace QA_Tool_Standalone
             LoggerService.Log("Initializing column list");
             chkLB_TargetColumns.Items.Clear();
             LB_EditColumns.Items.Clear();
-            List<ColumnData> data = ColumnDataRepository.GetColumnData(_connectionManager, "%", "%");
-            
+
+            List<ColumnData> data = new List<ColumnData>();
+            try
+            {
+                data = ColumnDataRepository.GetColumnData(_connectionManager, "%", "%");
+            }
+            catch (Exception ex) 
+            {
+                _initializationErrors.Add(ex.ToString());
+            }
+
             foreach (ColumnData columnRange in data)
             {
                 chkLB_TargetColumns.Items.Add(columnRange);
                 LB_EditColumns.Items.Add(columnRange);
             }
             LoggerService.Log("Finished loading column data");
-
         }
 
         private void InitDateRangeList()
@@ -172,7 +185,15 @@ namespace QA_Tool_Standalone
             lb_DateRange.Items.Clear();
             lb_DateRangesRunView.Items.Clear();
 
-            List<DateRange> data = DateRangeRepository.GetDateRanges(_connectionManager, "%");
+            List<DateRange> data = new List<DateRange>();
+            try
+            {
+                data = DateRangeRepository.GetDateRanges(_connectionManager, "%");
+            }
+            catch (Exception ex) 
+            {
+                _initializationErrors.Add(ex.ToString());
+            }
 
             foreach (DateRange dateRange in data)
             {
@@ -199,20 +220,6 @@ namespace QA_Tool_Standalone
 
         }
 
-        private Utilities.Double<string> GetActiveChoice()
-        {
-            if (treeView_WBWS.SelectedNode != null && treeView_WBWS.SelectedNode.Nodes.Count == 0 && treeView_WBWS.SelectedNode.Parent != null)
-            {
-                Utilities.Double<string> node = new Utilities.Double<string>(treeView_WBWS.SelectedNode.Parent.Text, treeView_WBWS.SelectedNode.Text);
-                return node;
-            }
-            else
-            {
-                LoggerService.Log("Non-terminal error: Unable to retrieve selected node data.");
-                return null;
-            }
-        }
-
         private void Label1_Click_1(object sender, EventArgs e)
         {
 
@@ -221,19 +228,6 @@ namespace QA_Tool_Standalone
         private void ChkLB_TargetColumns_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                textBox_Description.Text = ((ColumnData)LB_EditColumns.Items[LB_EditColumns.SelectedIndex]).Name;
-                textBox_ColumnCodes.Text = ((ColumnData)LB_EditColumns.Items[LB_EditColumns.SelectedIndex]).Data;
-            }
-            catch (Exception ex)
-            {
-                LoggerService.Log("Non-terminal error: " + ex.ToString());
-            }
         }
 
 
@@ -248,12 +242,20 @@ namespace QA_Tool_Standalone
             if (ValidatorService.ValidateColumnFormat(textBox_ColumnCodes.Text))
             {
                 ColumnData cd = new ColumnData(textBox_Description.Text, textBox_ColumnCodes.Text);
-                ColumnDataRepository.AddColumnData(_connectionManager, cd);
-                InitColumnList();
+                try
+                {
+                    ColumnDataRepository.AddColumnData(_connectionManager, cd);
+                    InitColumnList();
 
-                lbl_ChangesSaved.Visible = false;
-                lbl_UnsavedChanges.Visible = false;
-                lbl_NoChanges.Visible = true;
+                    lbl_ChangesSaved.Visible = false;
+                    lbl_UnsavedChanges.Visible = false;
+                    lbl_NoChanges.Visible = true;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error saving column data. See logs for details.", "Error!");
+                }
+                
 
             }
             else
@@ -500,9 +502,16 @@ namespace QA_Tool_Standalone
         {
             if (lb_DateRange.SelectedItem != null)
             {
-                DateRange drToDelete = (DateRange)lb_DateRange.SelectedItem;
-                DateRangeRepository.DeleteDateRange(_connectionManager, drToDelete);
-                InitDateRangeList();
+                try
+                {
+                    DateRange drToDelete = (DateRange)lb_DateRange.SelectedItem;
+                    DateRangeRepository.DeleteDateRange(_connectionManager, drToDelete);
+                    InitDateRangeList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Error Deleting Date Range");
+                }
             }
             else
             {
@@ -575,31 +584,42 @@ namespace QA_Tool_Standalone
             }
         }
 
-        private void btn_RunDateLabelMacros_Click(object sender, EventArgs e)
+        private async void btn_RunDateLabelMacros_Click(object sender, EventArgs e)
         {
             if (_activeSheet != null)
             {
-                try
+                if (txtBox_dateColumn.Text.Length > 0 && txtBox_targetColumn.Text.Length > 0)
                 {
-                    pb_RunDateTimeMacros.Value = 0;
-                    pb_RunDateTimeMacros.Maximum = _activeSheet.UsedRange.Rows.Count;
-                    pb_RunDateTimeMacros.PerformStep();
+                    try
+                    {
+                        pb_RunDateTimeMacros.Value = 0;
+                        int totalRowCount = _activeSheet.UsedRange.Rows.Count;
+                        pb_RunDateTimeMacros.Maximum = totalRowCount;
 
-                    ExcelRunDateLabelMacrosTask task = new ExcelRunDateLabelMacrosTask(
-                        _connectionManager,
-                        _activeSheet,
-                        txtBox_dateColumn.Text,
-                        txtBox_targetColumn.Text,
-                        txtBox_Fallback.Text
-                        );
+                        ExcelRunDateLabelMacrosTask task = new ExcelRunDateLabelMacrosTask(
+                            _connectionManager,
+                            _activeSheet,
+                            txtBox_dateColumn.Text.Trim(),
+                            txtBox_targetColumn.Text.Trim(),
+                            txtBox_Fallback.Text
+                            );
 
-                    task.Execute(() => { pb_RunDateTimeMacros.PerformStep(); });
-                } catch (TaskException te)
-                {
-                    MessageBox.Show(te.ToString(), "Error in Task");
-                } catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), "Program Error");
+                        IProgress<int> progress = new Progress<int>(value => { 
+                            pb_RunDateTimeMacros.Value = value; 
+                            lbl_RunDateTimeMacrosProgress.Text = $"On row {value} of {totalRowCount}";
+                        });
+
+                        await Task.Run(() => { task.Execute(progress, () => { }); });
+                        lbl_RunDateTimeMacrosProgress.Text = "Task finished";
+                    }
+                    catch (TaskException te)
+                    {
+                        MessageBox.Show(te.ToString(), "Error in Task");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Program Error");
+                    }
                 }
             }
             else
@@ -610,10 +630,13 @@ namespace QA_Tool_Standalone
 
         private void btn_SaveAppSettings_Click(object sender, EventArgs e)
         {
-            using (SQLiteDataAdapter sQLiteDataAdapter = new SQLiteDataAdapter(@"select id, param, value from config", _connectionManager.GetSQLConnection()))
+            try
             {
-                SQLiteCommandBuilder commandBuilder = new SQLiteCommandBuilder(sQLiteDataAdapter);
-                sQLiteDataAdapter.Update(_configDataTable);
+                ConfigRepository.UpdateConfigurationByDatatable(_connectionManager, _configDataTable);
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error saving configuration");
             }
         }
 

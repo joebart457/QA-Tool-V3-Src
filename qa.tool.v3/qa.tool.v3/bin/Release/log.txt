@@ -1,20 +1,14 @@
-3/31/2020 9:50:27 PM: INFO, Starting session.....
-3/31/2020 9:50:28 PM: INFO, Finished reading 0 lines from file: column_data.txt
-12/26/2020 5:26:05 PM: INFO, Starting session.....
-12/26/2020 5:26:05 PM: INFO, Finished reading 0 lines from file: column_data.txt
-5/2/2021 2:42:59 PM: INFO, Starting session.....
-5/2/2021 2:43:03 PM: INFO, Finished reading 0 lines from file: column_data.txt
-5/2/2021 2:48:34 PM: INFO, Adding columndata: |A:B
-5/2/2021 2:48:34 PM: INFO, Read '|A:B' from file: 'column_data.txt'
-5/2/2021 2:48:34 PM: INFO, Verified line.
-5/2/2021 2:48:34 PM: INFO, Finished reading 1 lines from file: column_data.txt
-5/2/2021 2:48:38 PM: INFO, Non-terminal exception occurred: System.NullReferenceException: Object reference not set to an instance of an object.
-   at QA_Tool_Standalone.Form1.Button5_Click(Object sender, EventArgs e) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Form1.cs:line 207
-5/2/2021 2:48:40 PM: INFO, Non-terminal exception occurred: System.NullReferenceException: Object reference not set to an instance of an object.
-   at QA_Tool_Standalone.Form1.Button5_Click(Object sender, EventArgs e) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Form1.cs:line 207
-5/2/2021 2:48:41 PM: INFO, Adding columndata: |A:B
-5/2/2021 2:48:41 PM: INFO, Read '|A:B' from file: 'column_data.txt'
-5/2/2021 2:48:41 PM: INFO, Verified line.
-5/2/2021 2:48:41 PM: INFO, Read '|A:B' from file: 'column_data.txt'
-5/2/2021 2:48:41 PM: INFO, Verified line.
-5/2/2021 2:48:41 PM: INFO, Finished reading 2 lines from file: column_data.txt
+5/5/2021 1:00:16 AM: INFO, Starting session.....
+5/5/2021 1:00:16 AM: INFO, Existing db not found. Creating...
+5/5/2021 1:00:17 AM: INFO, Finished new db creation.
+5/5/2021 10:29:34 AM: INFO, Starting session.....
+5/5/2021 10:33:01 AM: INFO, Starting session.....
+5/5/2021 10:34:24 AM: INFO, Starting session.....
+5/5/2021 10:34:24 AM: ERROR, System.NullReferenceException: Object reference not set to an instance of an object.
+   at QA_Tool_Standalone.Repository.ConfigRepository.GetStringOption(ConnectionManager cm, String param, String onFail) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\ConfigRepository.cs:line 42
+5/5/2021 10:34:24 AM: ERROR, System.NullReferenceException: Object reference not set to an instance of an object.
+   at QA_Tool_Standalone.Repository.ConfigRepository.GetBooleanOption(ConnectionManager cm, String param, Boolean onFail) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\ConfigRepository.cs:line 16
+5/5/2021 10:34:24 AM: ERROR, System.NullReferenceException: Object reference not set to an instance of an object.
+   at QA_Tool_Standalone.Repository.ConfigRepository.GetBooleanOption(ConnectionManager cm, String param, Boolean onFail) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\ConfigRepository.cs:line 16
+5/5/2021 10:34:24 AM: ERROR, System.NullReferenceException: Object reference not set to an instance of an object.
+   at QA_Tool_Standalone.Repository.ConfigRepository.GetBooleanOption(ConnectionManager cm, String param, Boolean onFail) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\ConfigRepository.cs:line 16

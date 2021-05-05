@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QA_Tool_Standalone.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -38,7 +39,13 @@ namespace QA_Tool_Standalone.Tasks
             {
                 foreach (string col in _columnsToHide)
                 {
-                    _activeSheet.Range[col].EntireColumn.Hidden = !_activeSheet.Range[col].EntireColumn.Hidden;
+                    if (ValidatorService.ValidateColumnFormat(col))
+                    {
+                        _activeSheet.Range[col].EntireColumn.Hidden = !_activeSheet.Range[col].EntireColumn.Hidden;
+                    } else
+                    {
+                        LoggerService.LogWarning($"Unable to hide columns; invalid format: {col}");
+                    }
                 }
 
 
