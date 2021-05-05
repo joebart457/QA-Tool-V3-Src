@@ -110,6 +110,9 @@
     <Compile Include="Repository\ConfigRepository.cs" />
     <Compile Include="Repository\DateRangeRepository.cs" />
     <Compile Include="Service\ValidatorService.cs" />
+    <Compile Include="Tasks\ExcelHideColumnsTask.cs" />
+    <Compile Include="Tasks\ExcelRunDateLabelMacrosTask.cs" />
+    <Compile Include="Tasks\TaskInterface.cs" />
     <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

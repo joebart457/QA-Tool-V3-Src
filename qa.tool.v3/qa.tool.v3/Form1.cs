@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using QA_Tool_Standalone.Repository;
 using QA_Tool_Standalone.Models;
 using QA_Tool_Standalone.Service;
+using QA_Tool_Standalone.Tasks;
+using System.Data.SQLite;
 
 namespace QA_Tool_Standalone
 {
@@ -24,6 +26,8 @@ namespace QA_Tool_Standalone
         private Excel.Workbook _activeWB;
         private ConnectionManager _connectionManager;
 
+        private DataTable _configDataTable;
+
         public Form1()
         {
             LoggerService.Log("Starting session.....");
@@ -31,9 +35,12 @@ namespace QA_Tool_Standalone
             _connectionManager = new ConnectionManager();
 
             SetupLogger();
+            SetupAppSettingsTable();
             InitTreeView();
             InitColumnList();
             InitDateRangeList();
+
+
 
             lbl_ChangesSaved.Visible = false;
             lbl_UnsavedChanges.Visible = false;
@@ -42,6 +49,22 @@ namespace QA_Tool_Standalone
             lbl_DateRangeChangesSaved.Visible = false;
             lbl_DateRangeUnsavedChanges.Visible = false;
             lbl_DateRangeNoChanges.Visible = true;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+     
+        }
+
+        private void SetupAppSettingsTable()
+        {
+            string selectConfigSql = @"select id, param, value from config";
+            using (SQLiteCommand command = new SQLiteCommand(selectConfigSql, _connectionManager.GetSQLConnection()))
+            {
+                _configDataTable = new DataTable();
+                _configDataTable.Load(command.ExecuteReader());
+                dgView_AppSettings.DataSource = _configDataTable;
+            }
         }
 
         private void SetupLogger()
@@ -147,11 +170,14 @@ namespace QA_Tool_Standalone
         {
             LoggerService.Log("Initializing date range list");
             lb_DateRange.Items.Clear();
+            lb_DateRangesRunView.Items.Clear();
+
             List<DateRange> data = DateRangeRepository.GetDateRanges(_connectionManager, "%");
 
             foreach (DateRange dateRange in data)
             {
                 lb_DateRange.Items.Add(dateRange);
+                lb_DateRangesRunView.Items.Add(dateRange);
             }
             LoggerService.Log("Finished loading date ranges");
         }
@@ -313,65 +339,33 @@ namespace QA_Tool_Standalone
 
         private void Button4_Click_1(object sender, EventArgs e)
         {
-
-            if (_activeSheet != null)
+            // Hide/Unhide Columns
+            if (_activeWB != null && _activeSheet != null)
             {
-                List<string> cols = GetColumnsToHide();
-                foreach (string col in cols)
+                try
                 {
-                    _activeSheet.Range[col].EntireColumn.Hidden = !_activeSheet.Range[col].EntireColumn.Hidden;
+                    ExcelHideColumnsTask task = new ExcelHideColumnsTask(
+                        _activeWB,
+                        _activeSheet,
+                        GetColumnsToHide(),
+                        ConfigRepository.GetBooleanOption(_connectionManager, "Excel.HideColumns.Output.ConvertToXLS", false),
+                        ConfigRepository.GetBooleanOption(_connectionManager, "Excel.HideColumns.Output.DeleteOldCSV", false),
+                        ConfigRepository.GetBooleanOption(_connectionManager, "Excel.HideColumns.Output.SaveAsNew", false),
+                        ConfigRepository.GetStringOption(_connectionManager, "Excel.HideColumns.Output.Folder", ""),
+                        ConfigRepository.GetStringOption(_connectionManager, "Excel.HideColumns.Output.Prefix", "hdn-"));
+                    task.Execute(() => { });
 
+                } catch (TaskException te) {
+                    MessageBox.Show(te.ToString(), "Error in Task");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Program Error");
                 }
 
-               
-                if (chkBox_ConvertToXLS.Checked && _activeWB.FullName.ToLower().EndsWith("csv"))
-                {
-                    string oldFilePath = _activeWB.FullName;
-                    string filepath = System.IO.Path.ChangeExtension(_activeWB.FullName, ".xlsx");
-                    LoggerService.Log("Converting file '"+_activeWB.FullName+"' to file: '" + filepath + "'...");
-                    _activeWB.SaveAs(filepath, Excel.XlFileFormat.xlOpenXMLWorkbook, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
-                                Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-                    LoggerService.Log("...action completed.");
-
-                    if (chkBox_DeleteOldCSV.Checked)
-                    {
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                            LoggerService.Log("Successfully deleted file '" + oldFilePath + "'.");
-                        }
-                        else
-                        {
-                            LoggerService.LogWarning("Unable to delete file '" + oldFilePath + "'. File does not exist.");
-                        }
-                    }
-                }
-
-
-
-                if (chkBox_SaveAsNewFile.Checked)
-                {
-                    if (System.IO.Directory.Exists(txtBox_OutputFolder.Text))
-                    {
-                        string fName = txtBox_OutputFolder.Text + "\\" + txtBox_Prefix.Text + _activeWB.Name;
-                        try
-                        {
-                            _activeWB.SaveAs(fName, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
-                                Excel.XlSaveAsAccessMode.xlNoChange, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-                            LoggerService.Log("Saved file '" + fName + "'.");
-                        }
-                        catch (Exception ex)
-                        {
-                            LoggerService.LogError("An error has occurred while trying to save the file '" + fName + "': " + ex.ToString());
-                            MessageBox.Show("Hmm. Something went wrong. Columns were hidden but unable to save the file. See logs for more details.", "Error");
-                        }
-                    }
-                    else
-                    {
-                        LoggerService.LogError("Columns were hidden, but unable to save file. Directory '" + txtBox_OutputFolder.Text + "' is not a valid directory");
-                        MessageBox.Show("Columns were hidden, but unable to save file. Directory '" + txtBox_OutputFolder.Text + "' is not a valid directory.", "Warning!");
-                    }
-                }
+            } else
+            {
+                MessageBox.Show("Please select a target sheet.");
             }
 
         }
@@ -407,27 +401,6 @@ namespace QA_Tool_Standalone
             else
             {
                 MessageBox.Show("Please select item.", "Select item");
-            }
-        }
-
-        private void btn_ChooseDestFolder_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog f1 = new FolderBrowserDialog();
-            if (f1.ShowDialog() == DialogResult.OK)
-            {
-                txtBox_OutputFolder.Text = f1.SelectedPath;
-            }
-        }
-
-        private void txtBox_OutputFolder_TextChanged(object sender, EventArgs e)
-        {
-            if (!System.IO.Directory.Exists(txtBox_OutputFolder.Text))
-            {
-                txtBox_OutputFolder.ForeColor = System.Drawing.Color.Red;
-            }
-            else
-            {
-                txtBox_OutputFolder.ForeColor = System.Drawing.Color.Black;
             }
         }
 
@@ -602,45 +575,31 @@ namespace QA_Tool_Standalone
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_RunDateLabelMacros_Click(object sender, EventArgs e)
         {
-            string dateColumn = txtBox_dateColumn.Text;
-            string targetColumn = txtBox_targetColumn.Text;
-            if (!(ValidatorService.ValidateSingleColumn(dateColumn) && ValidatorService.ValidateSingleColumn(targetColumn)))
-            {
-                MessageBox.Show("Expect date column and target column to be a single column value.");
-                return;
-            }
-
             if (_activeSheet != null)
             {
-                var xlRange = _activeSheet.UsedRange;
-
-                for (int i = 1; i <= xlRange.Rows.Count; i++)
+                try
                 {
-                    Excel.Range rawDateColumn = xlRange.Rows[i].Columns[dateColumn];
+                    pb_RunDateTimeMacros.Value = 0;
+                    pb_RunDateTimeMacros.Maximum = _activeSheet.UsedRange.Rows.Count;
+                    pb_RunDateTimeMacros.PerformStep();
 
-                    if (rawDateColumn != null)
-                    {
-                        if (rawDateColumn.Value is System.DateTime)
-                        {
-                            string label = DateRangeRepository.GetDateLabelsForDateTime(_connectionManager, rawDateColumn.Value, txtBox_Fallback.Text);
-                            xlRange.Rows[i].Columns[targetColumn] = label;
-                        }
-                        else
-                        {
-                            LoggerService.Log($"Date column in row {i.ToString()} was not of type System.DateTime");
-                        }
-                    }
-                    else
-                    {
-                        LoggerService.Log($"Date column in row {i.ToString()} was null.");
-                    }
+                    ExcelRunDateLabelMacrosTask task = new ExcelRunDateLabelMacrosTask(
+                        _connectionManager,
+                        _activeSheet,
+                        txtBox_dateColumn.Text,
+                        txtBox_targetColumn.Text,
+                        txtBox_Fallback.Text
+                        );
+
+                    task.Execute(() => { pb_RunDateTimeMacros.PerformStep(); });
+                } catch (TaskException te)
+                {
+                    MessageBox.Show(te.ToString(), "Error in Task");
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Program Error");
                 }
             }
             else
@@ -649,5 +608,30 @@ namespace QA_Tool_Standalone
             }
         }
 
+        private void btn_SaveAppSettings_Click(object sender, EventArgs e)
+        {
+            using (SQLiteDataAdapter sQLiteDataAdapter = new SQLiteDataAdapter(@"select id, param, value from config", _connectionManager.GetSQLConnection()))
+            {
+                SQLiteCommandBuilder commandBuilder = new SQLiteCommandBuilder(sQLiteDataAdapter);
+                sQLiteDataAdapter.Update(_configDataTable);
+            }
+        }
+
+        private void btn_DeleteAppSetting_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgView_AppSettings.SelectedRows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    ConfigRepository.DeleteParameter(_connectionManager, int.Parse(row.Cells[0].Value.ToString()));
+                }   
+            }
+            SetupAppSettingsTable();
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
