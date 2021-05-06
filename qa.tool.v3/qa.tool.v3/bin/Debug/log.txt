@@ -8511,3 +8511,444 @@
 5/5/2021 12:15:45 PM: INFO, Finished loading column data
 5/5/2021 12:15:45 PM: INFO, Initializing date range list
 5/5/2021 12:15:45 PM: INFO, Finished loading date ranges
+5/6/2021 7:57:31 AM: INFO, Starting session.....
+5/6/2021 7:57:31 AM: INFO, Initializing treeview.
+5/6/2021 7:57:32 AM: INFO, Finished initializing treeview
+5/6/2021 7:57:32 AM: INFO, Initializing column list
+5/6/2021 7:57:32 AM: INFO, Finished loading column data
+5/6/2021 7:57:32 AM: INFO, Initializing date range list
+5/6/2021 7:57:32 AM: INFO, Finished loading date ranges
+5/6/2021 8:01:47 AM: INFO, Starting session.....
+5/6/2021 8:01:48 AM: INFO, Initializing treeview.
+5/6/2021 8:01:49 AM: INFO, Finished initializing treeview
+5/6/2021 8:01:49 AM: INFO, Initializing column list
+5/6/2021 8:01:49 AM: INFO, Finished loading column data
+5/6/2021 8:01:49 AM: INFO, Initializing date range list
+5/6/2021 8:01:49 AM: INFO, Finished loading date ranges
+5/6/2021 8:10:10 AM: INFO, Starting session.....
+5/6/2021 8:10:11 AM: INFO, Initializing treeview.
+5/6/2021 8:10:11 AM: INFO, Finished initializing treeview
+5/6/2021 8:10:11 AM: INFO, Initializing column list
+5/6/2021 8:10:11 AM: INFO, Finished loading column data
+5/6/2021 8:10:11 AM: INFO, Initializing date range list
+5/6/2021 8:10:11 AM: INFO, Finished loading date ranges
+5/6/2021 8:21:13 AM: INFO, Starting session.....
+5/6/2021 8:21:14 AM: INFO, Initializing treeview.
+5/6/2021 8:21:14 AM: INFO, Finished initializing treeview
+5/6/2021 8:21:14 AM: INFO, Initializing column list
+5/6/2021 8:21:14 AM: INFO, Finished loading column data
+5/6/2021 8:21:14 AM: INFO, Initializing date range list
+5/6/2021 8:21:14 AM: INFO, Finished loading date ranges
+5/6/2021 8:31:26 AM: INFO, Starting session.....
+5/6/2021 8:31:26 AM: INFO, Initializing treeview.
+5/6/2021 8:31:27 AM: INFO, Finished initializing treeview
+5/6/2021 8:31:27 AM: INFO, Initializing column list
+5/6/2021 8:31:27 AM: INFO, Finished loading column data
+5/6/2021 8:31:27 AM: INFO, Initializing date range list
+5/6/2021 8:31:27 AM: INFO, Finished loading date ranges
+5/6/2021 9:27:42 AM: INFO, Starting session.....
+5/6/2021 9:27:42 AM: INFO, Initializing treeview.
+5/6/2021 9:27:43 AM: INFO, Finished initializing treeview
+5/6/2021 9:27:43 AM: INFO, Initializing column list
+5/6/2021 9:27:43 AM: INFO, Finished loading column data
+5/6/2021 9:27:43 AM: INFO, Initializing date range list
+5/6/2021 9:27:43 AM: INFO, Finished loading date ranges
+5/6/2021 9:31:56 AM: INFO, Starting session.....
+5/6/2021 9:31:56 AM: INFO, Initializing treeview.
+5/6/2021 9:31:57 AM: INFO, Finished initializing treeview
+5/6/2021 9:31:57 AM: INFO, Initializing column list
+5/6/2021 9:31:57 AM: INFO, Finished loading column data
+5/6/2021 9:31:57 AM: INFO, Initializing date range list
+5/6/2021 9:31:57 AM: INFO, Finished loading date ranges
+5/6/2021 9:35:12 AM: INFO, Starting session.....
+5/6/2021 9:35:12 AM: INFO, Initializing treeview.
+5/6/2021 9:35:13 AM: INFO, Finished initializing treeview
+5/6/2021 9:35:13 AM: INFO, Initializing column list
+5/6/2021 9:35:13 AM: INFO, Finished loading column data
+5/6/2021 9:35:13 AM: INFO, Initializing date range list
+5/6/2021 9:35:13 AM: INFO, Finished loading date ranges
+5/6/2021 9:35:22 AM: INFO, Initializing treeview.
+5/6/2021 9:35:22 AM: INFO, Finished initializing treeview
+5/6/2021 9:46:02 AM: INFO, Starting session.....
+5/6/2021 9:46:02 AM: INFO, Initializing treeview.
+5/6/2021 9:46:03 AM: INFO, Finished initializing treeview
+5/6/2021 9:46:03 AM: INFO, Initializing column list
+5/6/2021 9:46:03 AM: INFO, Finished loading column data
+5/6/2021 9:46:03 AM: INFO, Initializing date range list
+5/6/2021 9:46:03 AM: INFO, Finished loading date ranges
+5/6/2021 9:46:41 AM: INFO, Starting session.....
+5/6/2021 9:46:41 AM: INFO, Initializing treeview.
+5/6/2021 9:46:42 AM: INFO, Finished initializing treeview
+5/6/2021 9:46:42 AM: INFO, Initializing column list
+5/6/2021 9:46:42 AM: INFO, Finished loading column data
+5/6/2021 9:46:42 AM: INFO, Initializing date range list
+5/6/2021 9:46:42 AM: INFO, Finished loading date ranges
+5/6/2021 9:50:50 AM: INFO, Starting session.....
+5/6/2021 9:50:51 AM: INFO, Initializing treeview.
+5/6/2021 9:50:51 AM: INFO, Finished initializing treeview
+5/6/2021 9:50:51 AM: INFO, Initializing column list
+5/6/2021 9:50:51 AM: INFO, Finished loading column data
+5/6/2021 9:50:51 AM: INFO, Initializing date range list
+5/6/2021 9:50:51 AM: INFO, Finished loading date ranges
+5/6/2021 9:58:58 AM: INFO, Starting session.....
+5/6/2021 9:58:58 AM: INFO, Initializing treeview.
+5/6/2021 9:58:59 AM: INFO, Finished initializing treeview
+5/6/2021 9:58:59 AM: INFO, Initializing column list
+5/6/2021 9:58:59 AM: INFO, Finished loading column data
+5/6/2021 9:58:59 AM: INFO, Initializing date range list
+5/6/2021 9:58:59 AM: INFO, Finished loading date ranges
+5/6/2021 9:59:39 AM: INFO, Starting session.....
+5/6/2021 9:59:39 AM: INFO, Initializing treeview.
+5/6/2021 9:59:40 AM: INFO, Finished initializing treeview
+5/6/2021 9:59:40 AM: INFO, Initializing column list
+5/6/2021 9:59:40 AM: INFO, Finished loading column data
+5/6/2021 9:59:40 AM: INFO, Initializing date range list
+5/6/2021 9:59:40 AM: INFO, Finished loading date ranges
+5/6/2021 3:26:25 PM: INFO, Starting session.....
+5/6/2021 3:26:26 PM: INFO, Initializing treeview.
+5/6/2021 3:26:26 PM: INFO, Finished initializing treeview
+5/6/2021 3:26:26 PM: INFO, Initializing column list
+5/6/2021 3:26:26 PM: INFO, Finished loading column data
+5/6/2021 3:26:26 PM: INFO, Initializing date range list
+5/6/2021 3:26:26 PM: INFO, Finished loading date ranges
+5/6/2021 3:30:59 PM: INFO, Starting session.....
+5/6/2021 3:30:59 PM: INFO, Initializing treeview.
+5/6/2021 3:31:00 PM: INFO, Finished initializing treeview
+5/6/2021 3:31:00 PM: INFO, Initializing column list
+5/6/2021 3:31:00 PM: INFO, Finished loading column data
+5/6/2021 3:31:00 PM: INFO, Initializing date range list
+5/6/2021 3:31:00 PM: INFO, Finished loading date ranges
+5/6/2021 3:35:11 PM: INFO, Starting session.....
+5/6/2021 3:35:11 PM: INFO, Initializing treeview.
+5/6/2021 3:35:12 PM: INFO, Finished initializing treeview
+5/6/2021 3:35:12 PM: INFO, Initializing column list
+5/6/2021 3:35:12 PM: INFO, Finished loading column data
+5/6/2021 3:35:12 PM: INFO, Initializing date range list
+5/6/2021 3:35:12 PM: INFO, Finished loading date ranges
+5/6/2021 3:35:31 PM: INFO, Starting session.....
+5/6/2021 3:35:31 PM: INFO, Initializing treeview.
+5/6/2021 3:35:32 PM: INFO, Finished initializing treeview
+5/6/2021 3:35:32 PM: INFO, Initializing column list
+5/6/2021 3:35:32 PM: INFO, Finished loading column data
+5/6/2021 3:35:32 PM: INFO, Initializing date range list
+5/6/2021 3:35:32 PM: INFO, Finished loading date ranges
+5/6/2021 3:50:10 PM: INFO, Starting session.....
+5/6/2021 3:50:10 PM: INFO, Initializing treeview.
+5/6/2021 3:50:11 PM: INFO, Finished initializing treeview
+5/6/2021 3:50:11 PM: INFO, Initializing column list
+5/6/2021 3:50:11 PM: INFO, Finished loading column data
+5/6/2021 3:50:11 PM: INFO, Initializing date range list
+5/6/2021 3:50:11 PM: INFO, Finished loading date ranges
+5/6/2021 3:52:43 PM: INFO, Starting session.....
+5/6/2021 3:52:44 PM: INFO, Initializing treeview.
+5/6/2021 3:52:44 PM: INFO, Finished initializing treeview
+5/6/2021 3:52:44 PM: INFO, Initializing column list
+5/6/2021 3:52:44 PM: INFO, Finished loading column data
+5/6/2021 3:52:44 PM: INFO, Initializing date range list
+5/6/2021 3:52:44 PM: INFO, Finished loading date ranges
+5/6/2021 3:54:50 PM: INFO, Starting session.....
+5/6/2021 3:54:51 PM: INFO, Initializing treeview.
+5/6/2021 3:54:52 PM: INFO, Finished initializing treeview
+5/6/2021 3:54:52 PM: INFO, Initializing column list
+5/6/2021 3:54:52 PM: INFO, Finished loading column data
+5/6/2021 3:54:52 PM: INFO, Initializing date range list
+5/6/2021 3:54:52 PM: INFO, Finished loading date ranges
+5/6/2021 3:56:22 PM: INFO, Starting session.....
+5/6/2021 3:56:22 PM: INFO, Initializing treeview.
+5/6/2021 3:56:23 PM: INFO, Finished initializing treeview
+5/6/2021 3:56:23 PM: INFO, Initializing column list
+5/6/2021 3:56:23 PM: INFO, Finished loading column data
+5/6/2021 3:56:23 PM: INFO, Initializing date range list
+5/6/2021 3:56:23 PM: INFO, Finished loading date ranges
+5/6/2021 4:01:13 PM: INFO, Starting session.....
+5/6/2021 4:01:13 PM: INFO, Initializing treeview.
+5/6/2021 4:01:14 PM: INFO, Finished initializing treeview
+5/6/2021 4:01:14 PM: INFO, Initializing column list
+5/6/2021 4:01:14 PM: INFO, Finished loading column data
+5/6/2021 4:01:14 PM: INFO, Initializing date range list
+5/6/2021 4:01:14 PM: INFO, Finished loading date ranges
+5/6/2021 4:01:32 PM: INFO, Starting session.....
+5/6/2021 4:01:33 PM: INFO, Initializing treeview.
+5/6/2021 4:01:33 PM: INFO, Finished initializing treeview
+5/6/2021 4:01:33 PM: INFO, Initializing column list
+5/6/2021 4:01:33 PM: INFO, Finished loading column data
+5/6/2021 4:01:33 PM: INFO, Initializing date range list
+5/6/2021 4:01:33 PM: INFO, Finished loading date ranges
+5/6/2021 4:01:49 PM: INFO, Starting session.....
+5/6/2021 4:01:50 PM: INFO, Initializing treeview.
+5/6/2021 4:01:50 PM: INFO, Finished initializing treeview
+5/6/2021 4:01:50 PM: INFO, Initializing column list
+5/6/2021 4:01:50 PM: INFO, Finished loading column data
+5/6/2021 4:01:50 PM: INFO, Initializing date range list
+5/6/2021 4:01:50 PM: INFO, Finished loading date ranges
+5/6/2021 4:02:04 PM: INFO, Starting session.....
+5/6/2021 4:02:04 PM: INFO, Initializing treeview.
+5/6/2021 4:02:04 PM: INFO, Finished initializing treeview
+5/6/2021 4:02:04 PM: INFO, Initializing column list
+5/6/2021 4:02:04 PM: INFO, Finished loading column data
+5/6/2021 4:02:04 PM: INFO, Initializing date range list
+5/6/2021 4:02:04 PM: INFO, Finished loading date ranges
+5/6/2021 4:02:39 PM: INFO, Starting session.....
+5/6/2021 4:02:39 PM: INFO, Initializing treeview.
+5/6/2021 4:02:39 PM: INFO, Finished initializing treeview
+5/6/2021 4:02:39 PM: INFO, Initializing column list
+5/6/2021 4:02:39 PM: INFO, Finished loading column data
+5/6/2021 4:02:39 PM: INFO, Initializing date range list
+5/6/2021 4:02:39 PM: INFO, Finished loading date ranges
+5/6/2021 4:02:51 PM: INFO, Starting session.....
+5/6/2021 4:02:51 PM: INFO, Initializing treeview.
+5/6/2021 4:02:51 PM: INFO, Finished initializing treeview
+5/6/2021 4:02:51 PM: INFO, Initializing column list
+5/6/2021 4:02:51 PM: INFO, Finished loading column data
+5/6/2021 4:02:51 PM: INFO, Initializing date range list
+5/6/2021 4:02:51 PM: INFO, Finished loading date ranges
+5/6/2021 4:03:15 PM: INFO, Starting session.....
+5/6/2021 4:03:16 PM: INFO, Initializing treeview.
+5/6/2021 4:03:16 PM: INFO, Finished initializing treeview
+5/6/2021 4:03:16 PM: INFO, Initializing column list
+5/6/2021 4:03:16 PM: INFO, Finished loading column data
+5/6/2021 4:03:16 PM: INFO, Initializing date range list
+5/6/2021 4:03:16 PM: INFO, Finished loading date ranges
+5/6/2021 4:03:46 PM: INFO, Starting session.....
+5/6/2021 4:03:47 PM: INFO, Initializing treeview.
+5/6/2021 4:03:47 PM: INFO, Finished initializing treeview
+5/6/2021 4:03:47 PM: INFO, Initializing column list
+5/6/2021 4:03:47 PM: INFO, Finished loading column data
+5/6/2021 4:03:47 PM: INFO, Initializing date range list
+5/6/2021 4:03:47 PM: INFO, Finished loading date ranges
+5/6/2021 4:04:00 PM: INFO, Starting session.....
+5/6/2021 4:04:00 PM: INFO, Initializing treeview.
+5/6/2021 4:04:00 PM: INFO, Finished initializing treeview
+5/6/2021 4:04:00 PM: INFO, Initializing column list
+5/6/2021 4:04:00 PM: INFO, Finished loading column data
+5/6/2021 4:04:00 PM: INFO, Initializing date range list
+5/6/2021 4:04:00 PM: INFO, Finished loading date ranges
+5/6/2021 4:04:31 PM: INFO, Starting session.....
+5/6/2021 4:04:32 PM: INFO, Initializing treeview.
+5/6/2021 4:04:32 PM: INFO, Finished initializing treeview
+5/6/2021 4:04:32 PM: INFO, Initializing column list
+5/6/2021 4:04:32 PM: INFO, Finished loading column data
+5/6/2021 4:04:32 PM: INFO, Initializing date range list
+5/6/2021 4:04:32 PM: INFO, Finished loading date ranges
+5/6/2021 4:04:52 PM: INFO, Starting session.....
+5/6/2021 4:04:53 PM: INFO, Initializing treeview.
+5/6/2021 4:04:53 PM: INFO, Finished initializing treeview
+5/6/2021 4:04:53 PM: INFO, Initializing column list
+5/6/2021 4:04:53 PM: INFO, Finished loading column data
+5/6/2021 4:04:53 PM: INFO, Initializing date range list
+5/6/2021 4:04:53 PM: INFO, Finished loading date ranges
+5/6/2021 4:05:09 PM: INFO, Starting session.....
+5/6/2021 4:05:10 PM: INFO, Initializing treeview.
+5/6/2021 4:05:10 PM: INFO, Finished initializing treeview
+5/6/2021 4:05:10 PM: INFO, Initializing column list
+5/6/2021 4:05:10 PM: INFO, Finished loading column data
+5/6/2021 4:05:10 PM: INFO, Initializing date range list
+5/6/2021 4:05:10 PM: INFO, Finished loading date ranges
+5/6/2021 4:05:26 PM: INFO, Starting session.....
+5/6/2021 4:05:26 PM: INFO, Initializing treeview.
+5/6/2021 4:05:26 PM: INFO, Finished initializing treeview
+5/6/2021 4:05:26 PM: INFO, Initializing column list
+5/6/2021 4:05:26 PM: INFO, Finished loading column data
+5/6/2021 4:05:26 PM: INFO, Initializing date range list
+5/6/2021 4:05:26 PM: INFO, Finished loading date ranges
+5/6/2021 4:06:05 PM: INFO, Starting session.....
+5/6/2021 4:06:06 PM: INFO, Initializing treeview.
+5/6/2021 4:06:06 PM: INFO, Finished initializing treeview
+5/6/2021 4:06:06 PM: INFO, Initializing column list
+5/6/2021 4:06:06 PM: INFO, Finished loading column data
+5/6/2021 4:06:06 PM: INFO, Initializing date range list
+5/6/2021 4:06:06 PM: INFO, Finished loading date ranges
+5/6/2021 4:07:19 PM: INFO, Starting session.....
+5/6/2021 4:07:19 PM: INFO, Initializing treeview.
+5/6/2021 4:07:19 PM: INFO, Finished initializing treeview
+5/6/2021 4:07:19 PM: INFO, Initializing column list
+5/6/2021 4:07:19 PM: INFO, Finished loading column data
+5/6/2021 4:07:19 PM: INFO, Initializing date range list
+5/6/2021 4:07:19 PM: INFO, Finished loading date ranges
+5/6/2021 4:07:49 PM: INFO, Starting session.....
+5/6/2021 4:07:50 PM: INFO, Initializing treeview.
+5/6/2021 4:07:50 PM: INFO, Finished initializing treeview
+5/6/2021 4:07:50 PM: INFO, Initializing column list
+5/6/2021 4:07:50 PM: INFO, Finished loading column data
+5/6/2021 4:07:50 PM: INFO, Initializing date range list
+5/6/2021 4:07:50 PM: INFO, Finished loading date ranges
+5/6/2021 4:09:38 PM: INFO, Starting session.....
+5/6/2021 4:09:39 PM: INFO, Initializing treeview.
+5/6/2021 4:09:39 PM: INFO, Finished initializing treeview
+5/6/2021 4:09:39 PM: INFO, Initializing column list
+5/6/2021 4:09:39 PM: INFO, Finished loading column data
+5/6/2021 4:09:39 PM: INFO, Initializing date range list
+5/6/2021 4:09:39 PM: INFO, Finished loading date ranges
+5/6/2021 4:09:41 PM: INFO, Initializing treeview.
+5/6/2021 4:09:41 PM: INFO, Finished initializing treeview
+5/6/2021 4:09:45 PM: INFO, Initializing treeview.
+5/6/2021 4:09:45 PM: INFO, Finished initializing treeview
+5/6/2021 4:11:11 PM: INFO, Starting session.....
+5/6/2021 4:11:11 PM: INFO, Initializing treeview.
+5/6/2021 4:11:11 PM: INFO, Finished initializing treeview
+5/6/2021 4:11:11 PM: INFO, Initializing column list
+5/6/2021 4:11:11 PM: INFO, Finished loading column data
+5/6/2021 4:11:11 PM: INFO, Initializing date range list
+5/6/2021 4:11:11 PM: INFO, Finished loading date ranges
+5/6/2021 4:12:58 PM: INFO, Starting session.....
+5/6/2021 4:12:58 PM: INFO, Initializing treeview.
+5/6/2021 4:12:59 PM: INFO, Finished initializing treeview
+5/6/2021 4:12:59 PM: INFO, Initializing column list
+5/6/2021 4:12:59 PM: INFO, Finished loading column data
+5/6/2021 4:12:59 PM: INFO, Initializing date range list
+5/6/2021 4:12:59 PM: INFO, Finished loading date ranges
+5/6/2021 4:13:19 PM: INFO, Starting session.....
+5/6/2021 4:13:20 PM: INFO, Initializing treeview.
+5/6/2021 4:13:20 PM: INFO, Finished initializing treeview
+5/6/2021 4:13:20 PM: INFO, Initializing column list
+5/6/2021 4:13:20 PM: INFO, Finished loading column data
+5/6/2021 4:13:20 PM: INFO, Initializing date range list
+5/6/2021 4:13:20 PM: INFO, Finished loading date ranges
+5/6/2021 4:13:31 PM: INFO, Starting session.....
+5/6/2021 4:13:31 PM: INFO, Initializing treeview.
+5/6/2021 4:13:31 PM: INFO, Finished initializing treeview
+5/6/2021 4:13:31 PM: INFO, Initializing column list
+5/6/2021 4:13:31 PM: INFO, Finished loading column data
+5/6/2021 4:13:31 PM: INFO, Initializing date range list
+5/6/2021 4:13:31 PM: INFO, Finished loading date ranges
+5/6/2021 4:14:35 PM: INFO, Starting session.....
+5/6/2021 4:14:36 PM: INFO, Initializing treeview.
+5/6/2021 4:14:36 PM: INFO, Finished initializing treeview
+5/6/2021 4:14:36 PM: INFO, Initializing column list
+5/6/2021 4:14:36 PM: INFO, Finished loading column data
+5/6/2021 4:14:36 PM: INFO, Initializing date range list
+5/6/2021 4:14:36 PM: INFO, Finished loading date ranges
+5/6/2021 4:15:44 PM: INFO, Starting session.....
+5/6/2021 4:15:44 PM: INFO, Initializing treeview.
+5/6/2021 4:15:44 PM: INFO, Finished initializing treeview
+5/6/2021 4:15:44 PM: INFO, Initializing column list
+5/6/2021 4:15:44 PM: INFO, Finished loading column data
+5/6/2021 4:15:44 PM: INFO, Initializing date range list
+5/6/2021 4:15:44 PM: INFO, Finished loading date ranges
+5/6/2021 4:20:35 PM: INFO, Starting session.....
+5/6/2021 4:20:35 PM: INFO, Initializing treeview.
+5/6/2021 4:20:35 PM: INFO, Finished initializing treeview
+5/6/2021 4:20:35 PM: INFO, Initializing column list
+5/6/2021 4:20:35 PM: INFO, Finished loading column data
+5/6/2021 4:20:35 PM: INFO, Initializing date range list
+5/6/2021 4:20:35 PM: INFO, Finished loading date ranges
+5/6/2021 4:22:50 PM: INFO, Starting session.....
+5/6/2021 4:22:50 PM: INFO, Initializing treeview.
+5/6/2021 4:22:51 PM: INFO, Finished initializing treeview
+5/6/2021 4:22:51 PM: INFO, Initializing column list
+5/6/2021 4:22:51 PM: INFO, Finished loading column data
+5/6/2021 4:22:51 PM: INFO, Initializing date range list
+5/6/2021 4:22:51 PM: INFO, Finished loading date ranges
+5/6/2021 4:24:43 PM: INFO, Starting session.....
+5/6/2021 4:24:43 PM: INFO, Initializing treeview.
+5/6/2021 4:24:44 PM: INFO, Finished initializing treeview
+5/6/2021 4:24:44 PM: INFO, Initializing column list
+5/6/2021 4:24:44 PM: INFO, Finished loading column data
+5/6/2021 4:24:44 PM: INFO, Initializing date range list
+5/6/2021 4:24:44 PM: INFO, Finished loading date ranges
+5/6/2021 4:27:36 PM: INFO, Starting session.....
+5/6/2021 4:27:36 PM: INFO, Initializing treeview.
+5/6/2021 4:27:36 PM: INFO, Finished initializing treeview
+5/6/2021 4:27:36 PM: INFO, Initializing column list
+5/6/2021 4:27:36 PM: INFO, Finished loading column data
+5/6/2021 4:27:36 PM: INFO, Initializing date range list
+5/6/2021 4:27:36 PM: INFO, Finished loading date ranges
+5/6/2021 4:27:51 PM: INFO, Starting session.....
+5/6/2021 4:27:51 PM: INFO, Initializing treeview.
+5/6/2021 4:27:51 PM: INFO, Finished initializing treeview
+5/6/2021 4:27:51 PM: INFO, Initializing column list
+5/6/2021 4:27:51 PM: INFO, Finished loading column data
+5/6/2021 4:27:51 PM: INFO, Initializing date range list
+5/6/2021 4:27:51 PM: INFO, Finished loading date ranges
+5/6/2021 4:28:17 PM: INFO, Starting session.....
+5/6/2021 4:28:17 PM: INFO, Initializing treeview.
+5/6/2021 4:28:18 PM: INFO, Finished initializing treeview
+5/6/2021 4:28:18 PM: INFO, Initializing column list
+5/6/2021 4:28:18 PM: INFO, Finished loading column data
+5/6/2021 4:28:18 PM: INFO, Initializing date range list
+5/6/2021 4:28:18 PM: INFO, Finished loading date ranges
+5/6/2021 4:28:29 PM: INFO, Initializing treeview.
+5/6/2021 4:28:30 PM: INFO, Finished initializing treeview
+5/6/2021 4:29:14 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:16 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:17 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:18 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:18 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:29:18 PM: WARN, Date column in row 1 was not of type System.DateTime
+5/6/2021 4:32:28 PM: INFO, Starting session.....
+5/6/2021 4:32:28 PM: INFO, Initializing treeview.
+5/6/2021 4:32:29 PM: INFO, Finished initializing treeview
+5/6/2021 4:32:29 PM: INFO, Initializing column list
+5/6/2021 4:32:29 PM: INFO, Finished loading column data
+5/6/2021 4:32:29 PM: INFO, Initializing date range list
+5/6/2021 4:32:29 PM: INFO, Finished loading date ranges
+5/6/2021 4:32:50 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:50 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:50 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:50 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:51 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:52 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:52 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:52 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:52 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:54 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:32:57 PM: WARN, Date column in row 2 was not of type System.DateTime
+5/6/2021 4:32:57 PM: WARN, Date column in row 3 was not of type System.DateTime
+5/6/2021 4:33:31 PM: INFO, Starting session.....
+5/6/2021 4:33:31 PM: INFO, Initializing treeview.
+5/6/2021 4:33:32 PM: INFO, Finished initializing treeview
+5/6/2021 4:33:32 PM: INFO, Initializing column list
+5/6/2021 4:33:32 PM: INFO, Finished loading column data
+5/6/2021 4:33:32 PM: INFO, Initializing date range list
+5/6/2021 4:33:32 PM: INFO, Finished loading date ranges
+5/6/2021 4:33:46 PM: ERROR, System.Exception: Reference to object was null
+   at QA_Tool_Standalone.Utilities.CheckNull(Object obj) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Utilities.cs:line 14
+   at QA_Tool_Standalone.Repository.DateRangeRepository.GetDateLabelsForDateTime(ConnectionManager cm, DateTime dt, String fallback) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\DateRangeRepository.cs:line 115
+5/6/2021 4:37:47 PM: INFO, Starting session.....
+5/6/2021 4:37:47 PM: INFO, Initializing treeview.
+5/6/2021 4:37:48 PM: INFO, Finished initializing treeview
+5/6/2021 4:37:48 PM: INFO, Initializing column list
+5/6/2021 4:37:48 PM: INFO, Finished loading column data
+5/6/2021 4:37:48 PM: INFO, Initializing date range list
+5/6/2021 4:37:48 PM: INFO, Finished loading date ranges
+5/6/2021 4:37:58 PM: ERROR, System.Exception: Reference to object was null
+   at QA_Tool_Standalone.Utilities.CheckNull(Object obj) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Utilities.cs:line 14
+   at QA_Tool_Standalone.Repository.DateRangeRepository.GetDateLabelsForDateTime(ConnectionManager cm, DateTime dt, String fallback) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\DateRangeRepository.cs:line 115
+5/6/2021 4:38:43 PM: INFO, Starting session.....
+5/6/2021 4:38:43 PM: INFO, Initializing treeview.
+5/6/2021 4:38:44 PM: INFO, Finished initializing treeview
+5/6/2021 4:38:44 PM: INFO, Initializing column list
+5/6/2021 4:38:44 PM: INFO, Finished loading column data
+5/6/2021 4:38:44 PM: INFO, Initializing date range list
+5/6/2021 4:38:44 PM: INFO, Finished loading date ranges
+5/6/2021 4:39:00 PM: ERROR, System.Exception: Reference to object was null
+   at QA_Tool_Standalone.Utilities.CheckNull(Object obj) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Utilities.cs:line 14
+   at QA_Tool_Standalone.Repository.DateRangeRepository.GetDateLabelsForDateTime(ConnectionManager cm, DateTime dt, String fallback) in C:\WIP\QA-Tool-V3-Src\qa.tool.v3\qa.tool.v3\Repository\DateRangeRepository.cs:line 115
+5/6/2021 4:51:59 PM: INFO, Starting session.....
+5/6/2021 4:52:00 PM: INFO, Initializing treeview.
+5/6/2021 4:52:00 PM: INFO, Finished initializing treeview
+5/6/2021 4:52:00 PM: INFO, Initializing column list
+5/6/2021 4:52:00 PM: INFO, Finished loading column data
+5/6/2021 4:52:00 PM: INFO, Initializing date range list
+5/6/2021 4:52:00 PM: INFO, Finished loading date ranges

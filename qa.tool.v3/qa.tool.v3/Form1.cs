@@ -21,6 +21,18 @@ namespace QA_Tool_Standalone
 {
     public partial class Form1 : Form
     {
+        /* Design */
+
+        // Colors
+        private Color _activeTabColor = Color.GhostWhite;
+        private Color _inactiveTabColor = Color.Lavender;
+
+        // Locations 
+        private Point _panelStart = new Point(269, 45);
+
+        // Sizes
+        private Size _startingSize = new Size(820, 478);
+        /* Data */
 
         private Excel.Worksheet _activeSheet;
         private Excel.Workbook _activeWB;
@@ -40,6 +52,7 @@ namespace QA_Tool_Standalone
             SetupAppSettingsTable();
             LoadDataFromDB();
             ShowErrors();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,8 +61,74 @@ namespace QA_Tool_Standalone
         }
         private void SetupForm()
         {
-            SetFormtTitleText();
+            SetFormSize();
+            SetFormColor();
+            SetFormTitleText();
             SetLabelVisibility();
+            SetPanelVisibility();
+            SetPanelLocations();
+            SetTabsInactive();
+            SetDefaultTabActive();
+        }
+
+        private void SetFormSize()
+        {
+            this.Size = _startingSize;
+        }
+
+        private void SetFormColor()
+        {
+            this.BackColor = _inactiveTabColor;
+        }
+
+        private void SetFormTitleText()
+        {
+            string dbVersion = ConfigRepository.GetStringOption(_connectionManager, "Db.Version", "<n/a>");
+            string activeSheetName = _activeWB != null && _activeSheet != null ? " - " + _activeWB.Name + "." + _activeSheet.Name : "";
+
+            this.Text = $"QA Tool v4.{dbVersion}{activeSheetName}";
+        }
+
+        private void SetPanelVisibility()
+        {
+            pnl_RunDateTimeMacros.Visible = false;
+            pnl_EditDateTimeMacros.Visible = false;
+            pnl_HideColumns.Visible = false;
+            pnl_EditColumnMacros.Visible = false;
+            pnl_AppSettings.Visible = false;
+        }
+
+        private void SetPanelLocations()
+        {
+            pnl_RunDateTimeMacros.Location = _panelStart;
+            pnl_EditDateTimeMacros.Location = _panelStart;
+            pnl_HideColumns.Location = _panelStart;
+            pnl_EditColumnMacros.Location = _panelStart;
+            pnl_AppSettings.Location = _panelStart;
+        }
+
+        private void SetTabsInactive()
+        {
+            lbl_RunDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_EditDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_HideColumnsTab.BackColor = _inactiveTabColor;
+            lbl_EditColumnMacrosTab.BackColor = _inactiveTabColor;
+            SetAllTabBorderStyles(BorderStyle.FixedSingle);
+        }
+
+        private void SetDefaultTabActive()
+        {
+            pnl_RunDateTimeMacros.Visible = true;
+            lbl_RunDateTimeMacrosTab.BackColor = _activeTabColor;
+            lbl_RunDateTimeMacrosTab.BorderStyle = BorderStyle.None;
+        }
+
+        private void SetAllTabBorderStyles(BorderStyle borderStyle)
+        {
+            lbl_RunDateTimeMacrosTab.BorderStyle = borderStyle;
+            lbl_EditDateTimeMacrosTab.BorderStyle = borderStyle;
+            lbl_HideColumnsTab.BorderStyle = borderStyle;
+            lbl_EditColumnMacrosTab.BorderStyle = borderStyle;
         }
 
         private void LoadDataFromDB()
@@ -66,12 +145,6 @@ namespace QA_Tool_Standalone
                 MessageBox.Show(String.Join("\n", _initializationErrors), "Error Occured While Loading App");
                 _initializationErrors.Clear();
             }
-        }
-
-        private void SetFormtTitleText()
-        {
-            string dbVersion = ConfigRepository.GetStringOption(_connectionManager, "Db.Version", "<n/a>");
-            this.Text = $"QA Tool v.{dbVersion}";
         }
 
         private void SetupAppSettingsTable()
@@ -95,7 +168,6 @@ namespace QA_Tool_Standalone
         private void SetActive(Utilities.Double<string> node)
         {
             _activeWB = null;
-            lbl_TargetSheet.Text = "Target Sheet: n/a";
             foreach (Excel.Workbook wb in MSExcelWorkbookRunningInstances.Enum())
             {
 
@@ -113,8 +185,8 @@ namespace QA_Tool_Standalone
             else
             {
                 _activeSheet = _activeWB.Sheets[node.B];
-                lbl_TargetSheet.Text = _activeWB.Name + "." + _activeSheet.Name;
             }
+            SetFormTitleText();
         }
 
         private void SetLabelVisibility()
@@ -318,14 +390,6 @@ namespace QA_Tool_Standalone
             {
                 LoggerService.Log("Non-terminal error: " + ex.ToString());
             }
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            btn_Refresh.UseWaitCursor = true;
-            InitTreeView();
-            btn_Refresh.UseWaitCursor = false;
-
         }
 
         private List<string> GetColumnsToHide()
@@ -592,6 +656,7 @@ namespace QA_Tool_Standalone
                 {
                     try
                     {
+                        btn_RunDateLabelMacros.Enabled = false;
                         pb_RunDateTimeMacros.Value = 0;
                         int totalRowCount = _activeSheet.UsedRange.Rows.Count;
                         pb_RunDateTimeMacros.Maximum = totalRowCount;
@@ -619,6 +684,9 @@ namespace QA_Tool_Standalone
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.ToString(), "Program Error");
+                    } finally
+                    {
+                        btn_RunDateLabelMacros.Enabled = true;
                     }
                 }
             }
@@ -655,6 +723,100 @@ namespace QA_Tool_Standalone
         private void tabPage4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lbl_RunDateTimeMacrosTab_Click(object sender, EventArgs e)
+        {
+            lbl_RunDateTimeMacrosTab.BackColor = _activeTabColor;
+            lbl_EditDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_HideColumnsTab.BackColor = _inactiveTabColor;
+            lbl_EditColumnMacrosTab.BackColor = _inactiveTabColor;
+            SetAllTabBorderStyles(BorderStyle.FixedSingle);
+            lbl_RunDateTimeMacrosTab.BorderStyle = BorderStyle.None;
+
+
+            pnl_RunDateTimeMacros.Visible = true;
+            pnl_EditDateTimeMacros.Visible = false;
+            pnl_HideColumns.Visible = false;
+            pnl_EditColumnMacros.Visible = false;
+            pnl_AppSettings.Visible = false;
+        }
+
+        private void lbl_EditDateTimeMacrosTab_Click(object sender, EventArgs e)
+        {
+            lbl_RunDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_EditDateTimeMacrosTab.BackColor = _activeTabColor;
+            lbl_HideColumnsTab.BackColor = _inactiveTabColor;
+            lbl_EditColumnMacrosTab.BackColor = _inactiveTabColor;
+
+            SetAllTabBorderStyles(BorderStyle.FixedSingle);
+            lbl_EditDateTimeMacrosTab.BorderStyle = BorderStyle.None;
+
+
+            pnl_RunDateTimeMacros.Visible = false;
+            pnl_EditDateTimeMacros.Visible = true;
+            pnl_HideColumns.Visible = false;
+            pnl_EditColumnMacros.Visible = false;
+            pnl_AppSettings.Visible = false;
+        }
+
+        private void lbl_HideColumnsTab_Click(object sender, EventArgs e)
+        {
+            lbl_RunDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_EditDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_HideColumnsTab.BackColor = _activeTabColor;
+            lbl_EditColumnMacrosTab.BackColor = _inactiveTabColor;
+
+            SetAllTabBorderStyles(BorderStyle.FixedSingle);
+            lbl_HideColumnsTab.BorderStyle = BorderStyle.None;
+
+            pnl_RunDateTimeMacros.Visible = false;
+            pnl_EditDateTimeMacros.Visible = false;
+            pnl_HideColumns.Visible = true;
+            pnl_EditColumnMacros.Visible = false;
+            pnl_AppSettings.Visible = false;
+        }
+
+        private void lbl_EditColumnMacrosTab_Click(object sender, EventArgs e)
+        {
+            lbl_RunDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_EditDateTimeMacrosTab.BackColor = _inactiveTabColor;
+            lbl_HideColumnsTab.BackColor = _inactiveTabColor;
+            lbl_EditColumnMacrosTab.BackColor = _activeTabColor;
+
+            SetAllTabBorderStyles(BorderStyle.FixedSingle);
+            lbl_EditColumnMacrosTab.BorderStyle = BorderStyle.None;
+
+
+            pnl_RunDateTimeMacros.Visible = false;
+            pnl_EditDateTimeMacros.Visible = false;
+            pnl_HideColumns.Visible = false;
+            pnl_EditColumnMacros.Visible = true;
+            pnl_AppSettings.Visible = false;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SetTabsInactive();
+            pnl_RunDateTimeMacros.Visible = false;
+            pnl_EditDateTimeMacros.Visible = false;
+            pnl_HideColumns.Visible = false;
+            pnl_EditColumnMacros.Visible = false;
+            pnl_AppSettings.Visible = true;
+        }
+
+        private void tsbtn_About_Click(object sender, EventArgs e)
+        {
+            string dbVersion = ConfigRepository.GetStringOption(_connectionManager, "Db.Version", "<n/a>");
+            string message = $"QA-Tool v4 | DB v{dbVersion}\nCopyright 2021";
+            MessageBox.Show(message, "Info");
+        }
+
+        private void treeviewContextMenu_Refresh_Click(object sender, EventArgs e)
+        {
+            treeView_WBWS.UseWaitCursor = true;
+            InitTreeView();
+            treeView_WBWS.UseWaitCursor = false;
         }
     }
 }

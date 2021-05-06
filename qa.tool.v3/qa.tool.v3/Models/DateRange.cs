@@ -14,7 +14,7 @@ namespace QA_Tool_Standalone.Models
         public DateTime EndTime { get; set; }
         public override string ToString()
         {
-            return $"{this.Label} || {this.StartTime.ToString()} - {this.EndTime.ToString()}";
+            return $"{this.Label}    |    {this.StartTime.ToString()} - {this.EndTime.ToString()}";
         }
     }
 }
